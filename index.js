@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors'); // Import the cors package
 const fs = require('fs');
 const csv = require('csv-parser');
 const cheerio = require('cheerio');
@@ -32,6 +33,7 @@ fs.createReadStream(inputFilePath)
   });
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.get("/", async (req, res) => {
