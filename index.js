@@ -7,7 +7,7 @@ const axios = require('axios');
 
 const inputFilePath = './InventarioAuraMakeupCaja1.csv';
 const elemSelector =  'body > #tt-pageContent > .shopify-section > .product_page_template > link';
-let readData = [];
+let readData = []; 
 
 fs.createReadStream(inputFilePath) 
   .pipe(csv())
