@@ -20,7 +20,7 @@ fs.createReadStream(inputFilePath)
   }).on('end', async () => {
     console.log('Finished reading -> Starting Crawling', new Date());
     
-    let $;
+    let $; 
     readData.forEach((item, index) => {
       setTimeout(async () => {
         await axios(item.Link).then((response) => {
@@ -28,7 +28,7 @@ fs.createReadStream(inputFilePath)
           item.image = $(elemSelector)[0].attribs.content;
           console.log(item.image);
         });
-      }, index * 500); // 5000 milliseconds (5 seconds) delay between each iteration
+      }, index * 500);
     })
   });
 
