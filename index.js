@@ -9,8 +9,8 @@ const inputFilePath = './InventarioAuraMakeupCaja1.csv';
 const elemSelector =  'body > #tt-pageContent > .shopify-section > .product_page_template > link';
 let readData = []; 
 
-fs.createReadStream(inputFilePath) 
-  .pipe(csv())
+fs.createReadStream(inputFilePath)
+  .pipe(csv()) 
   .on('data', (data) => {
     try {
       readData.push(data);
