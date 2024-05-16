@@ -21,14 +21,27 @@ fs.createReadStream(inputFilePath)
     console.log('Finished reading -> Starting Crawling', new Date());
     
     let $;
+    let noLinkCount = 0;
     readData.forEach((item, index) => {
       setTimeout(async () => {
-        await axios(item.Link).then((response) => {
-          $ = cheerio.load(response.data); 
-          item.image = $(elemSelector)[0].attribs.content;
-          console.log(item.image);
-        });
-      }, index * 1000);
+        if (item.Link === '') {
+          if (item.AlternateLink === '') {
+            item.image = 'https://placehold.co/600x600?text=No+Image';
+            noLinkCount++;
+            console.log('amount of placeholders', noLinkCount);
+          } else {
+            item.image = item.AlternateLink;
+            noLinkCount++;
+            console.log(item.AlternateLink);
+          }
+        } else {
+          await axios(item.Link).then((response) => {
+            $ = cheerio.load(response.data); 
+            item.image = $(elemSelector)[0].attribs.content;
+            console.log(item.image);
+          });
+        }
+      }, index * 200);
     })
   });
 
