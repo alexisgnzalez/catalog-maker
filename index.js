@@ -41,7 +41,7 @@ fs.createReadStream(inputFilePath)
             console.log(item.image);
           });
         }
-      }, index * 500);
+      }, index * 1000);
     })
   });
 
