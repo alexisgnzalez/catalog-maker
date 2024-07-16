@@ -36,6 +36,7 @@ fs.createReadStream(inputFilePath)
           }
         } else {
           await axios(item.Link).then((response) => {
+            // console.log(item.Link);
             $ = cheerio.load(response.data); 
             item.image = $(elemSelector)[0].attribs.content;
             console.log(item.image);
